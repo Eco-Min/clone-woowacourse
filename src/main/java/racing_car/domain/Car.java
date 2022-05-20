@@ -1,16 +1,16 @@
-package racing_car;
+package racing_car.domain;
 
 public class Car {
 
     private String name;
     private int position;
     public void create(String name) {
-        isValid(name);
+        validate(name);
         this.name = name;
         this.position = 0;
     }
 
-    private void isValid(String name) {
+    private void validate(String name) {
         if (name.isBlank() || name.isEmpty()) {
             throw new IllegalArgumentException();
         }
@@ -30,11 +30,7 @@ public class Car {
         return position;
     }
 
-    private void setPosition(int position) {
-        this.position += position;
-    }
-
     public void addPosition() {
-        setPosition(1);
+        this.position += 1;
     }
 }

@@ -1,4 +1,7 @@
-package racing_car;
+package racing_car.service;
+
+import racing_car.domain.RacingRule;
+import racing_car.domain.Car;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -11,7 +14,7 @@ public class RacingGame {
         this.rule = rule;
     }
 
-    public List<Car> step(List<Car> cars) {
+    public List<Car> proceed(List<Car> cars) {
         for (Car car : cars) {
             if(rule.runningOfRace()) {
                 car.addPosition();
@@ -23,7 +26,6 @@ public class RacingGame {
     public List<Car> result(List<Car> car) {
         List<Integer> positionList = car.stream().map(Car::getPosition).toList();
         Integer max = Collections.max(positionList);
-        List<Car> result = car.stream().filter(item -> item.getPosition() == max).collect(Collectors.toList());
-        return result;
+        return car.stream().filter(item -> item.getPosition() == max).collect(Collectors.toList());
     }
 }

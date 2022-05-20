@@ -2,6 +2,11 @@ package racing_car;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racing_car.domain.FirstRacingRule;
+import racing_car.domain.RacingRule;
+import racing_car.domain.Car;
+import racing_car.domain.CarFactory;
+import racing_car.service.RacingGame;
 
 import java.util.List;
 
@@ -14,7 +19,7 @@ class RacingGameTest {
         List<Car> cars = factory.createCar();
         RacingRule rule = new FirstRacingRule();
         RacingGame racingGame = new RacingGame(rule);
-        racingGame.step(cars);
+        racingGame.proceed(cars);
         for (Car car : cars) {
             System.out.println("car = " + car.getPosition());
         }

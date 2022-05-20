@@ -1,4 +1,4 @@
-package racing_car;
+package racing_car.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ public class CarFactory {
     }
 
     public List<Car> createCar() {
-        Set<String> splitCar = isValid();
+        Set<String> splitCar = givenEachCarName();
         for (String s : splitCar) {
             Car car = new Car();
             car.create(s);
@@ -24,13 +24,17 @@ public class CarFactory {
         return carList;
     }
 
-    private Set<String> isValid() {
+    private Set<String> givenEachCarName() {
         String[] split = getCars().split(",");
         Set<String> splitCar = Set.of(split);
+        checkDuplicate(split, splitCar);
+        return splitCar;
+    }
+
+    private void checkDuplicate(String[] split, Set<String> splitCar) {
         if (split.length != splitCar.size()) {
             throw new IllegalArgumentException("중복되는 문제 발생");
         }
-        return splitCar;
     }
 
     public String getCars() {
